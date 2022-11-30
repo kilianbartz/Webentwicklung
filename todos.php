@@ -40,30 +40,21 @@
             </div>
             <div class="col">
                 <div class="row">
-                    <div class="col-4">
-                        <div class="card">
-                            <h4 class="card-header">ToDo:</h4>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">HTML Dateil erstellen (Max Mustermann)</li>
-                                <li class="list-group-item">CSS Datei erstellen (Max Mustermann)</li>
-                            </ul>
+                    <?php
+                        require "data.php";
+                        foreach($reiter as $id => $row){
+                            echo '<div class="col-4"><div class="card">
+                            <h4 class="card-header">'.$row["name"].'</h4>
+                            <ul class="list-group list-group-flush">';
+                                foreach($todos as $t){
+                                    if($t["reiterid"] != $id) continue;
+                                    echo '<li class="list-group-item">'.$t["text"].' ('.$mitglieder[$t["userid"]]["name"].')</li>';
+                                }
+                            echo '</ul>
                         </div>
-                    </div><div class="col-4">
-                        <div class="card">
-                            <h4 class="card-header">Erledigt:</h4>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">PC eingeschaltet (Petra Müller)</li>
-                                <li class="list-group-item">Kaffee trinken (Petra Müller)</li>
-                            </ul>
-                        </div>
-                    </div><div class="col-4">
-                        <div class="card">
-                            <h4 class="card-header">Verschoben:</h4>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Für die Uni lernen (Max Mustermann)</li>
-                            </ul>
-                        </div>
-                    </div>
+                    </div>';
+                        }
+                    ?>
                 </div>
             </div>
         </div>
