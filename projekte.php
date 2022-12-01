@@ -4,32 +4,7 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <title>Title</title>
-    <style>
-        h1 {
-            text-align: center;
-            color: #242424;
-            width: 100%;
-        }
-        #title {
-            padding: 1.5rem;
-        }
-        .indented {
-            margin-left: 1em;
-        }
-        a {
-            text-decoration: none;
-        }
-        label.big {
-            font-size: 1.25rem;
-        }
-        .button-group {
-            margin-top: 1em;
-        }
-        .form-group, .form-check, .btn {
-            margin-bottom: 1em;
-        }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="bg-light mb-3" id="title">
@@ -37,16 +12,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2">
-                <ul class="list-group">
-                    <li class="list-group-item"><a href="#">Login</a></li>
-                    <li class="list-group-item"><a href="#">Projekte</a></li>
-                    <li class="list-group-item"><a href="#">Aktuelles Projekt</a></li>
-                    <li class="list-group-item indented"><a href="#">Reiter</a></li>
-                    <li class="list-group-item indented"><a href="#">Aufgaben</a></li>
-                    <li class="list-group-item indented"><a href="#">Mitglieder</a></li>
-                </ul>
-            </div>
+            <?php require "sidemenu.php"; ?>
             <div class="col">
                 <form action="">
                     <div class="form-group">

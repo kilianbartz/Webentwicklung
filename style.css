@@ -1,0 +1,27 @@
+h1 {
+    text-align: center;
+    color: #242424;
+    width: 100%;
+}
+#title {
+    padding: 1.5rem;
+}
+.indented {
+    margin-left: 1em;
+}
+a {
+    text-decoration: none;
+}
+label.big {
+    font-size: 1.25rem;
+}
+.button-group {
+    margin-top: 1em;
+}
+.form-group, .form-check, .btn {
+    margin-bottom: 1em;
+}
+i {
+    margin-right: 1em;
+    float: right;
+}
