@@ -35,7 +35,7 @@
                     <?php
                         require "data.php";
                         foreach($todos as $row){
-                            echo "<tr><td>".$row['text']."</td><td>".$row['beschreibung']."</td><td>".$reiter[$row["reiterid"]]["name"]."</td><td>".$mitglieder[$row["userid"]]["name"]."</td><td><i class='fa-solid fa-pen-to-square'></i><i class='fa-solid fa-trash-can'></i></td></tr>";
+                            echo "<tr><td>".$row['text']."</td><td>".$row['beschreibung']."</td><td>".$reiter[$row["reiterid"]]["name"]."</td><td>".$mitglieder[$row["userid"]]["name"]."</td><td><i class='fa-solid fa-trash-can'></i><i class='fa-solid fa-pen-to-square'></i></td></tr>";
                         }
                     ?>
                     </tbody>

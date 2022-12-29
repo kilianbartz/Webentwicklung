@@ -50,7 +50,7 @@
                 </div>
                 <button class="btn btn-primary" type="submit">Einloggen</button>
                 <p>Noch nicht registriert? <a href="register.html">Registrierung</a></p>
-                <p>Da der Login Vorgang technisch noch nicht realisiert wurde: <a href="register.html">Überspringen</a></p>
+                <p>Da der Login Vorgang technisch noch nicht realisiert wurde: <a href="todos.php">Überspringen</a></p>
             </form>
         </div>
     </div>
