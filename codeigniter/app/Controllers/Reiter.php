@@ -60,7 +60,9 @@ class Reiter extends BaseController
                 "beschreibung" => "Dinge die später erledigt werden"
             ],
             ];
-        return view("templates/header").view("templates/standard_open").view('reiter', $data)
+
+        $data['title'] = "Aufgabenplaner: Reiter";
+        return view("templates/header").view("templates/standard_open", $data).view('reiter', $data)
             .view('templates/standard_close').view("templates/footer");
     }
 }

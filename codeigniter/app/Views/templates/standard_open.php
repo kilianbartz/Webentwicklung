@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="bg-light mb-3" id="title">
-        <h1>Aufgabenplaner: Todos (Aktuelles Projekt)</h1>
+        <h1><?= $title ?></h1>
     </div>
     <div class="row">
         <div class="col-2">

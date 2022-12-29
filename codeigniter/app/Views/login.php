@@ -7,14 +7,14 @@
 
         </div>
         <div class="col">
-            <form action="">
+            <form action="<?=base_url("public/login")?>" method="post">
                 <div class="form-group">
                     <label for="email">Email-Adresse</label>
-                    <input type="email" placeholder="Email-Adresse eingeben" id="email" class="form-control">
+                    <input type="email" placeholder="Email-Adresse eingeben" id="email" class="form-control" name="email">
                 </div>
                 <div class="form-group">
                     <label for="pw">Passwort</label>
-                    <input type="password" placeholder="Passwort" id="pw" class="form-control">
+                    <input type="password" placeholder="Passwort" id="pw" class="form-control" name="password">
                 </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="agbs">

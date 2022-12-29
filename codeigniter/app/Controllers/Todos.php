@@ -60,7 +60,9 @@ class Todos extends BaseController
                 "beschreibung" => "Dinge die später erledigt werden"
             ],
             ];
-        return view("templates/header").view("templates/standard_open").view('todos', $data)
+
+        $data['title'] = "Aufgabenplaner: Todos (aktuelles Projekt)";
+        return view("templates/header").view("templates/standard_open", $data).view('todos', $data)
             .view('templates/standard_close').view("templates/footer");
     }
 }

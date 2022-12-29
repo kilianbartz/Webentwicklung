@@ -60,7 +60,8 @@ class Aufgaben extends BaseController
                 "beschreibung" => "Dinge die später erledigt werden"
             ],
             ];
-        return view("templates/header").view("templates/standard_open").view('aufgaben', $data)
+        $data['title'] = "Aufgabenplaner: Aufgaben";
+        return view("templates/header").view("templates/standard_open", $data).view('aufgaben', $data)
             .view('templates/standard_close').view("templates/footer");
     }
 }
