@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\MitgliederModel;
+use App\Models\ProjekteModel;
 
 class Login extends BaseController
 {
@@ -27,9 +28,15 @@ class Login extends BaseController
             die("Ungültiges Passwort.");
         $this->session->set('username', $mitglied['username']);
         $this->session->set('userid', $mitglied['id']);
+        $this->session->set('loggedIn', true);
+        //Da ich nicht verstanden habe, welche Projektid der Sitzung hinzugefügt werden soll, wird im Folgenden die neuste gewählt
+        $projektM = new ProjekteModel();
+        $projekt = $projektM->getFirstProjekt();
+        if($projekt) $this->session->set('projektid', $projekt['id']);
         return redirect()->to(base_url("public/todos"));
     }
     public function logout(){
-
+        $this->session->destroy();
+        return redirect()->to(base_url("public"));
     }
 }

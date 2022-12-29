@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-2">
             <ul class="list-group">
-                <li class="list-group-item"><a href="<?=base_url("public/login")?>">Login</a></li>
+                <li class="list-group-item"><a href="<?=base_url("public/login/logout")?>">Logout</a></li>
                 <li class="list-group-item"><a href="<?=base_url("public/projekte")?>">Projekte</a></li>
                 <li class="list-group-item"><a href="<?=base_url("public/todos")?>">Aktuelles Projekt</a></li>
                 <li class="list-group-item indented"><a href="<?=base_url("public/reiter")?>">Reiter</a></li>
