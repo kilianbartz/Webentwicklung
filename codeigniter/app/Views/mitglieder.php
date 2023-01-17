@@ -14,13 +14,15 @@
         </thead>
         <tbody>
         <?php
-            foreach($mitglieder as $row){
-                echo "<tr><td>".$row['username']."</td><td>".$row['email']."</td>
+            if(isset($mitglieder)){
+                foreach($mitglieder as $row){
+                    echo "<tr><td>".$row['username']."</td><td>".$row['email']."</td>
                 <td><input type='checkbox' class='form-check-input'></td>
                 <td><a href='".base_url("public/mitglieder/edit/".$row['id'])."'><i class='fa-solid fa-pen-to-square'></i></a>
                     <a href='#' onclick='remove(".$row['id'].")'><i class='fa-solid fa-trash-can'></i></a>
                     </td>
                 </tr>";
+                }
             }
         ?>
         </tbody>

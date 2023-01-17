@@ -1,15 +1,20 @@
 
                     <?php
-                        foreach(esc($reiter) as $id => $row){
+                        if(isset($aufgaben)){
+                            $reiterid = $aufgaben[0]['reiterid'];
                             echo '<div class="col-4"><div class="card">
-                            <h4 class="card-header">'.$row["name"].'</h4>
-                            <ul class="list-group list-group-flush">';
-                                foreach($todos as $t){
-                                    if($t["reiterid"] != $id) continue;
-                                    echo '<li class="list-group-item">'.$t["text"].' ('.$mitglieder[$t["userid"]]["name"].')</li>';
+                                    <h4 class="card-header">'.$aufgaben[0]["rname"].'</h4>
+                                    <ul class="list-group list-group-flush">';
+                            foreach($aufgaben as $row){
+                                if($row['reiterid'] != $reiterid){
+                                    $reiterid = $row['reiterid'];
+                                    echo '</ul></div></div>';
+                                    echo '<div class="col-4"><div class="card">
+                                    <h4 class="card-header">'.$row["rname"].'</h4>
+                                    <ul class="list-group list-group-flush">';
                                 }
-                            echo '</ul>
-                        </div>
-                    </div>';
+                                echo '<li class="list-group-item">'.$row['name'].' ('.$row['zustaendige'].')</li>';
+                            }
+                            echo '</ul></div></div>';
                         }
                     ?>

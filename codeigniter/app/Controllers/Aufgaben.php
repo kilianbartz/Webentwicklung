@@ -2,66 +2,48 @@
 
 namespace App\Controllers;
 
+use App\Models\AufgabenModel;
+use App\Models\MitgliederModel;
+use App\Models\ReiterModel;
+
 class Aufgaben extends BaseController
 {
+    public function __construct()
+    {
+        $this->am = new AufgabenModel();
+        $this->rm = new ReiterModel();
+        $this->mm = new MitgliederModel();
+    }
+
     public function index()
     {
-        $data['mitglieder'] = [
-            [
-                "username" => "max",
-                "name" => "Max Mustermann",
-                "email" => "max@mustermann.de",
-                "projektid" => 1,
-            ],[
-                "username" => "petra",
-                "name" => "Petra Müller",
-                "email" => "petra@mueller.de",
-                "projektid" => 2,
-            ],
-        ];
-        $data['todos'] = [
-            [
-                "reiterid" => 0,
-                "text" => "HTML Datei erstellen",
-                "beschreibung" => "HTML Datei erstellen",
-                "userid" => 0
-            ],[
-                "reiterid" => 0,
-                "text" => "CSS Datei erstellen",
-                "beschreibung" => "CSS Datei erstellen",
-                "userid" => 0
-            ],[
-                "reiterid" => 1,
-                "text" => "PC einschalten",
-                "beschreibung" => "PC einschalten",
-                "userid" => 1
-            ],[
-                "reiterid" => 1,
-                "text" => "Kaffee trinken",
-                "beschreibung" => "Kaffee trinken",
-                "userid" => 1,
-            ],[
-                "reiterid" => 2,
-                "text" => "Für die Uni lernen",
-                "beschreibung" => "Für die Uni lernen",
-                "userid" => 0
-            ],
-        ];
-        $data['reiter'] =
-            [
-                [
-                    "name" => "ToDo",
-                    "beschreibung" => "Dinge die erledigt werden müssen"
-                ],[
-                "name" => "Erledigt",
-                "beschreibung" => "Dinge die erledigt sind"
-            ],[
-                "name" => "Verschoben",
-                "beschreibung" => "Dinge die später erledigt werden"
-            ],
-            ];
+        $data['aufgaben'] = $this->am->getAufgabenMitMitgliedern();
         $data['title'] = "Aufgabenplaner: Aufgaben";
+        $data['reiter'] = $this->rm->getReiter();
+        $data['mitglieder'] = $this->mm->getMitglieder();
         return view("templates/header").view("templates/standard_open", $data).view('aufgaben', $data)
             .view('templates/standard_close').view("templates/footer");
+    }
+    public function edit($id){
+        $data['aufgaben'] = $this->am->getAufgabenMitMitgliedern();
+        $data['title'] = "Aufgabenplaner: Aufgaben";
+        $data['reiter'] = $this->rm->getReiter();
+        $data['mitglieder'] = $this->mm->getMitglieder();
+        $data['editAufgabe'] = $this->am->getAufgabeMitMitgliedern($id);
+        return view("templates/header").view("templates/standard_open", $data).view('aufgaben', $data)
+            .view('templates/standard_close').view("templates/footer");
+    }
+    public function new(){
+        if(isset($_POST['zust']) && !empty($_POST['zust']))
+            $this->am->createAufgabe();
+        return redirect()->to(base_url("public/aufgaben"));
+    }
+    public function update($id){
+        $this->am->updateAufgabe($id);
+        return redirect()->to(base_url("public/aufgaben"));
+    }
+    public function remove($id){
+        $this->am->deleteAufgabe($id);
+        return redirect()->to(base_url("public/aufgaben"));
     }
 }

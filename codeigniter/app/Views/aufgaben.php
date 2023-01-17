@@ -15,47 +15,49 @@
         </thead>
         <tbody>
         <?php
-            foreach($todos as $row){
-                echo "<tr><td>".$row['text']."</td><td>".$row['beschreibung']."</td><td>".$reiter[$row["reiterid"]]["name"]."</td><td>".$mitglieder[$row["userid"]]["name"]."</td><td><i class='fa-solid fa-trash-can'></i><i class='fa-solid fa-pen-to-square'></i></td></tr>";
+            foreach($aufgaben as $row){
+                echo "<tr><td>".$row['name']."</td><td>".$row['beschreibung']."</td><td>".$row["rname"]."</td><td>(".
+                    $row["zustaendige"].")</td><td>
+                    <a href='#' onclick='remove(".$row['id'].")'><i class='fa-solid fa-trash-can'></i></a>
+                    <a href='".base_url("public/aufgaben/edit/".$row['id'])."'><i class='fa-solid fa-pen-to-square'></i></a></td></tr>";
             }
         ?>
         </tbody>
     </table>
 </div>
-<form action="">
+<form action="<?= isset($editAufgabe) ? base_url("public/aufgaben/update/".$editAufgabe['id']) : base_url("public/aufgaben/new")?>" method="post">
     <label for="project" class="big">Bearbeiten/erstellen:</label>
     <div class="form-group">
         <label for="name">Aufgabenbezeichnung:</label>
-        <input type="text" class="form-control" id="name">
+        <input type="text" class="form-control" id="name" name="name" value="<?= isset($editAufgabe) ? $editAufgabe['name'] : '' ?>">
     </div>
     <div class="form-group">
         <label for="beschreibung">Beschreibung der Aufgabe:</label>
-        <textarea id="beschreibung" class="form-control"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="erstellung">Erstellungsdatum:</label>
-        <input type="date" class="form-control" id="erstellung">
+        <textarea id="beschreibung" name="beschreibung" class="form-control"><?= isset($editAufgabe) ? $editAufgabe['beschreibung'] : '' ?></textarea>
     </div>
     <div class="form-group">
         <label for="faellig">fällig bis:</label>
-        <input type="date" class="form-control" id="faellig">
+        <input type="date" class="form-control" name="faelligkeitsdatum" id="faellig" value="<?= isset($editAufgabe) ? $editAufgabe['faelligkeitsdatum'] : '' ?>">
     </div>
     <div class="form-group">
         <label for="reiter">Zugehöriger Reiter:</label>
-        <select name="reiter" id="reiter" class="form-select">
+        <select name="reiterid" id="reiter" class="form-select">
             <?php
-                foreach($reiter as $id => $row){
-                    echo "<option value='$id'>".$row["name"]."</option>";
+                foreach($reiter as $row){
+                    $selected = isset($editAufgabe) && $editAufgabe['reiterid'] ==  $row['id'] ? "selected" : "";
+                    echo "<option $selected value='".$row['id']."'>".$row["name"]."</option>";
                 }
             ?>
         </select>
     </div>
     <div class="form-group">
         <label for="zust">Zuständig:</label>
-        <select name="zust" id="zust" class="form-select">
+        <select name="zust[]" id="zust" class="form-select" multiple>
             <?php
-                foreach($mitglieder as $id => $row){
-                    echo "<option value='$id'>".$row["name"]."</option>";
+                foreach($mitglieder as $row){
+                    $id = $row['id'];
+                    $selected = isset($editAufgabe) && str_contains($editAufgabe['zustaendige'], $row['username']) ? "selected" : "";
+                    echo "<option $selected value='$id'>".$row["username"]."</option>";
                 }
             ?>
         </select>
@@ -65,3 +67,9 @@
         <button class="btn btn-primary" style="background: #17a2b8; border: 1px solid #17a2b8;" type="reset">Reset</button>
     </div>
 </form>
+<script>
+    function remove(id){
+        if(confirm("Sind Sie sich sicher, dass Sie diese Aufgabe löschen möchten?"))
+            window.location.href = "<?=base_url("public/aufgaben/remove")?>/" + id
+    }
+</script>

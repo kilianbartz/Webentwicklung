@@ -53,6 +53,13 @@ class MitgliederModel extends Model {
         $this->table->where('id', $id);
         $this->table->delete();
     }
+    public function getUserProject($id){
+        $this->table = $this->db->table("projektemitglieder");
+        $this->table->where('mitgliederid', $id);
+        $this->table->select("projektid");
+        $result = $this->table->get(1);
+        return $result->getRowArray();
+    }
 
 }
 

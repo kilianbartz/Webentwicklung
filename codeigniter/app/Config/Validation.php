@@ -38,6 +38,24 @@ class Validation extends BaseConfig
         'single' => 'CodeIgniter\Validation\Views\single',
     ];
 
+    public $login = [
+        'email' => 'required|valid_email',
+        'password' => 'required',
+        'agbs' => 'required'
+    ];
+    public $login_errors = [
+        'email' => [
+            'required' => 'Bitte tragen Sie eine E-Mail Adresse ein.',
+            'valid_email' => 'Diese E-Mail Adresse ist ungültig!'
+        ],
+        'password' => [
+            'required' => 'Zum Einloggen müssen Sie ein Passwort angeben!'
+        ],'agbs' => [
+            'required' => 'Um diese Webseite zu nutzen müssen Sie unseren AGBs zustimmen.'
+        ],
+
+    ];
+
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------
