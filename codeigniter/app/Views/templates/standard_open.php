@@ -33,7 +33,7 @@
             </div>
         </div>
     </nav>
-    <div class="row">
+    <div class="row mt-4">
         <?php /*<div class="col-2">
             <ul class="list-group">
                 <li class="list-group-item"><a href="<?=base_url("public/login/logout")?>">Logout</a></li>
