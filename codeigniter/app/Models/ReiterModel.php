@@ -27,17 +27,17 @@ class ReiterModel extends Model {
             'beschreibung' => $_POST['beschreibung']));
     }
 
-    public function updateReiter() {
+    public function updateReiter($id) {
 
         $this->table = $this->db->table('reiter');
-        $this->table->where('id', $_POST['id']);
+        $this->table->where('id', $id);
         $this->table->update(array('name' => $_POST['name'],
             'beschreibung' => $_POST['beschreibung']));
     }
 
-    public function deleteReiter() {
+    public function deleteReiter($id) {
         $this->table = $this->db->table('reiter');
-        $this->table->where('id', $_POST['id']);
+        $this->table->where('id', $id);
         $this->table->delete();
     }
 
